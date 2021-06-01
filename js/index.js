@@ -134,3 +134,56 @@ music.addEventListener('ended', nextSong);
 
 next.addEventListener('click', nextSong);
 prev.addEventListener('click', prevSong);
+
+
+// Switching Light and Dark Mode
+var darkModeOn = false;
+var mode = document.getElementById('mode');
+
+var c_main = document.getElementsByClassName('main')[0];
+var c_music_container = document.getElementsByClassName('music-container')[0];
+var c_title = document.getElementById('title');
+var c_progress_duration_meter = document.getElementsByClassName('progress-duration-meter')[0];
+var c_progress_div = document.getElementsByClassName('progress-div')[0];
+var c_icons = document.querySelectorAll('.music-container .fas');
+
+mode.addEventListener('click', function(){
+    if(!darkModeOn)
+    {
+        darkModeOn = true;
+
+        c_main.style.backgroundColor = "#111111";
+        c_music_container.style.backgroundColor = "#404040";
+        c_title.style.color = "white";
+        c_title.style.textShadow = "0 0.3rem 0.3rem #cccaca";
+        img.style.boxShadow = "0 0.1rem 3rem #cccaca";
+        c_progress_duration_meter.style.color = "white";
+        c_progress_div.style.backgroundColor = "white";
+        c_progress_div.style.boxShadow = "0 1px 2px #cccaca, 0 2px 4px #cccaca, 0 4px 8px #cccaca, 0 8px 16px #cccaca, 0 16px 32px #cccaca, 0 32px 64px #cccaca";
+        c_icons[1].style.color = "white";
+        c_icons[3].style.color = "white";
+        mode.classList.replace('fa-moon', 'fa-sun');
+        mode.style.color = "#111111";
+        mode.style.background = "white";
+        mode.style.fontSize = "1.8rem";
+    }
+    else
+    {
+        darkModeOn = false;
+
+        c_main.style.backgroundColor = "#f6f6f6";
+        c_music_container.style.backgroundColor = "#ffffff";
+        c_title.style.color = "#171717";
+        c_title.style.textShadow = "0 0.3rem 0.5rem rgba(0, 0, 0, 0.3)";
+        img.style.boxShadow = "0 1.2rem 3rem rgba(0, 0, 0, 0.4)";
+        c_progress_duration_meter.style.color = "black";
+        c_progress_div.style.backgroundColor = "white";
+        c_progress_div.style.boxShadow = "0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07), 0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07), 0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07)";
+        c_icons[1].style.color = "#111111";
+        c_icons[3].style.color = "#111111";
+        mode.classList.replace('fa-sun', 'fa-moon');
+        mode.style.color = "white";
+        mode.style.background = "#111111";
+        mode.style.fontSize = "1.6rem";
+    }
+})

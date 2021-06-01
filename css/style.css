@@ -25,7 +25,7 @@ html{
     background-color: #ffffff;
     border-radius: 2rem;
     box-shadow: 0 1.2rem 3rem 0.5rem rgba(0, 0, 0, 0.2);
-    padding: 3rem;
+    padding: 1rem;
     text-align: center;
 }
 
@@ -63,6 +63,23 @@ img{
     box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.4);
 }
 
+/* Styling Dark Mode Feature */
+.mode-div{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#mode{
+    display: flex;
+    height: 3rem;
+    width: 3rem;
+    align-items: center;
+    background: #111111;
+    color: white;
+    border-radius: 50%;
+    justify-content: center;
+    font-size: 1.6rem;
+}
 
 /* Styling Music Controls */
 
