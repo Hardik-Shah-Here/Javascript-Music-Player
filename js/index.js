@@ -39,7 +39,8 @@ var prev = document.getElementById('prev');
 var progress = document.getElementById('progress');
 var total_duration = document.getElementById('duration');
 var current_time = document.getElementById('current-time');
-var progress_div = document.getElementById('progress-div')
+var progress_div = document.getElementById('progress-div');
+var song_version = document.getElementById('song-version');
 
 const songs = [
     {
@@ -64,7 +65,49 @@ const songs = [
     }
 ]
 
+const e_songs = [
+    {
+        name: "esong-1",
+        title: "Wake Me Up",
+        artist: "Avicii",
+    },
+    {
+        name: "esong-2",
+        title: "Perfect",
+        artist: "Ed Sheeran",
+    },
+    {
+        name: "esong-3",
+        title: "Despacito",
+        artist: "Luis Fonsi",
+    },
+    {
+        name: "esong-4",
+        title: "Story Of My Life",
+        artist: "One Direction"
+    }
+]
+
+var isEnglish = false;
+var e_song_index = 0;
 var song_index = 0;
+
+// Function to switch between English and Hindi songs
+song_version.addEventListener('click', function(){
+    if(isEnglish)
+    {
+        isEnglish = false;
+        loadSong(songs[song_index]);
+        song_version.innerText = "ENG";
+    }
+    else
+    {
+        isEnglish = true;
+        loadSong(e_songs[e_song_index]);
+        song_version.innerText = "HINDI";
+    }
+    playMusic();
+});
 
 function loadSong(songs){
     title.textContent = songs.title;
@@ -75,15 +118,33 @@ function loadSong(songs){
 
 // Function to play next song
 function nextSong(){
-    song_index = (song_index + 1) % songs.length;
-    loadSong(songs[song_index]);
+
+    if(!isEnglish)
+    {
+        song_index = (song_index + 1) % songs.length;
+        loadSong(songs[song_index]);
+    }  
+    else
+    {
+        e_song_index = (e_song_index + 1) % e_songs.length;
+        loadSong(e_songs[e_song_index]);
+    }
     playMusic();
 };
 
 // Function to play previous song
 function prevSong(){
-    song_index = (song_index - 1 + songs.length) % songs.length;
-    loadSong(songs[song_index]);
+
+    if(!isEnglish)
+    {
+        song_index = (song_index - 1 + songs.length) % songs.length;
+        loadSong(songs[song_index]);
+    }
+    else
+    {
+        e_song_index = (e_song_index - 1 + e_songs.length) % e_songs.length;
+        loadSong(e_songs[e_song_index]);
+    }
     playMusic();
 }
 
@@ -108,6 +169,9 @@ music.addEventListener('timeupdate', function(event){
     // Custom music duration changes
     var duration_min = Math.floor(duration / 60);
     var duration_sec = Math.floor(duration % 60);
+    // To resolve 0.1, 0.2 ... for 1s, 2s ... instead of 0:01, 0:02 ...
+    if(duration_sec < 10)
+        duration_sec = "0"+duration_sec;
     var tot_duration = duration_min + ":" + duration_sec;
     // To resolve NaN issue between song changes
     if(duration)
@@ -165,8 +229,10 @@ mode.addEventListener('click', function(){
         c_icons[3].style.color = "white";
         mode.classList.replace('fa-moon', 'fa-sun');
         mode.style.color = "#111111";
-        mode.style.background = "white";
+        mode.style.background = "#f2f2f2";
         mode.style.fontSize = "1.8rem";
+        song_version.style.color = "#111111"
+        song_version.style.background = "#f2f2f2";
     }
     else
     {
@@ -183,8 +249,10 @@ mode.addEventListener('click', function(){
         c_icons[1].style.color = "#111111";
         c_icons[3].style.color = "#111111";
         mode.classList.replace('fa-sun', 'fa-moon');
-        mode.style.color = "white";
+        mode.style.color = "#f2f2f2";
         mode.style.background = "#111111";
         mode.style.fontSize = "1.6rem";
+        song_version.style.color = "#f2f2f2"
+        song_version.style.background = "#111111";
     }
 })
