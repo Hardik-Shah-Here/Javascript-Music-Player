@@ -21,6 +21,7 @@ function pauseMusic(){
     play.classList.replace('fa-pause', 'fa-play');
 }
 
+// Pause Play button functionality
 play.addEventListener('click', function(){
     if(isPlaying)
         pauseMusic();
@@ -29,7 +30,6 @@ play.addEventListener('click', function(){
 });
 
 
-// Pause Play button functionality
 var title = document.getElementById('title');
 var artist = document.getElementById('artist');
 var img = document.querySelector('img');
@@ -87,6 +87,13 @@ function prevSong(){
     playMusic();
 }
 
+//Call next song function if current song ends
+music.addEventListener('ended', nextSong);
+
+next.addEventListener('click', nextSong);
+prev.addEventListener('click', prevSong);
+
+
 
 // Progress Bar work
 music.addEventListener('timeupdate', function(event){
@@ -128,12 +135,6 @@ progress_div.addEventListener('click', function(event){
     var move_progress = (event.offsetX / event.target.clientWidth) * duration;
     music.currentTime = move_progress;
 });
-
-//Call next song function if current song ends
-music.addEventListener('ended', nextSong);
-
-next.addEventListener('click', nextSong);
-prev.addEventListener('click', prevSong);
 
 
 // Switching Light and Dark Mode
