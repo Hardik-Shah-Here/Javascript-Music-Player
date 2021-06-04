@@ -196,7 +196,8 @@ music.addEventListener('timeupdate', function(event){
 progress_div.addEventListener('click', function(event){
     const { duration } = music;
     // Calculated the % of duration which has been covered
-    var move_progress = (event.offsetX / event.target.clientWidth) * duration;
+    // FIXED BACKWARD PROGRESS BUG USING parentElement
+    var move_progress = (event.offsetX / event.target.parentElement.offsetWidth) * duration;
     music.currentTime = move_progress;
 });
 
