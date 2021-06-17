@@ -42,6 +42,7 @@ var current_time = document.getElementById('current-time');
 var progress_div = document.getElementById('progress-div');
 var song_version = document.getElementById('song-version');
 
+// Hindi Song Details
 const songs = [
     {
         name: "song-1",
@@ -65,6 +66,7 @@ const songs = [
     }
 ]
 
+// English Song Details
 const e_songs = [
     {
         name: "esong-1",
@@ -109,6 +111,7 @@ song_version.addEventListener('click', function(){
     playMusic();
 });
 
+// Function to load the song
 function loadSong(songs){
     title.textContent = songs.title;
     artist.textContent = songs.artist;
